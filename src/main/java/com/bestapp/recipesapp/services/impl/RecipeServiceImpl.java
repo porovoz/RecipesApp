@@ -30,23 +30,19 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe editRecipe(long recipeNumber, Recipe recipe) {
-        for (Recipe value : recipes.values()) {
             if (recipes.containsKey(recipeNumber)) {
                 recipes.put(recipeNumber, recipe);
                 return recipe;
             }
-        }
         return null;
     }
 
     @Override
     public boolean deleteRecipeById(long recipeNumber) {
-        for (Recipe value : recipes.values()) {
             if (recipes.containsKey(recipeNumber)) {
                 recipes.remove(recipeNumber);
                 return true;
             }
-        }
         return false;
     }
 
