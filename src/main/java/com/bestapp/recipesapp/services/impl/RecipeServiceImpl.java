@@ -2,6 +2,7 @@ package com.bestapp.recipesapp.services.impl;
 
 import com.bestapp.recipesapp.model.Recipe;
 import com.bestapp.recipesapp.services.RecipeService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,16 +21,19 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Map<Long, Recipe> getAllRecipes() {
+        ObjectUtils.isNotEmpty(recipes);
         return recipes;
     }
 
     @Override
     public Recipe getRecipe(long recipeNumber) {
+        ObjectUtils.isNotEmpty(recipes);
         return recipes.get(recipeNumber);
     }
 
     @Override
     public Recipe editRecipe(long recipeNumber, Recipe recipe) {
+        ObjectUtils.isNotEmpty(recipe);
             if (recipes.containsKey(recipeNumber)) {
                 recipes.put(recipeNumber, recipe);
                 return recipe;
@@ -39,6 +43,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public boolean deleteRecipeById(long recipeNumber) {
+        ObjectUtils.isNotEmpty(recipes);
             if (recipes.containsKey(recipeNumber)) {
                 recipes.remove(recipeNumber);
                 return true;
